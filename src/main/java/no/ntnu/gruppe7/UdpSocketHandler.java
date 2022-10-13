@@ -26,6 +26,10 @@ public class UdpSocketHandler {
     // We will reuse this packet for incoming UDP packets
     DatagramPacket receivePacket = new DatagramPacket(responseDataBuffer, responseDataBuffer.length);
 
+    UdpSocketHandler() throws SocketException {
+        this.clientSocket = new DatagramSocket();
+    }
+    
     /**
      * Communicate with the UDP server according to the protocol
      */
@@ -92,7 +96,6 @@ public class UdpSocketHandler {
         // https://github.com/ntnu-datakomm/server-side/blob/main/example-udp-server/src/main/java/no/ntnu/UdpClient.java
         byte[] dataToSend = message.getBytes();
         try {
-            this.clientSocket = new DatagramSocket();
             InetAddress serverAddress = InetAddress.getByName(SERVER_ADDRESS);
             DatagramPacket sendPacket = new DatagramPacket(dataToSend, dataToSend.length, serverAddress, SERVER_UDP_PORT);
             clientSocket.send(sendPacket);
