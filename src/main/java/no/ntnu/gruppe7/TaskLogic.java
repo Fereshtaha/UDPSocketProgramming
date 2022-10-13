@@ -33,10 +33,6 @@ public class TaskLogic {
             return 0;
         }
 
-        for(String string : sentence.split(" ")) {
-            System.out.println(string);
-        }
-
         return sentence.split(" ").length;
     }
 
